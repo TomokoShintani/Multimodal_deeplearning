@@ -4,7 +4,6 @@ import pandas as pd
 import random
 import cv2
 import torch
-import torch.nn as nn
 from torchvision import datasets, transforms, models
 from collections import Counter
 from torchtext.vocab import vocab
@@ -78,6 +77,8 @@ def text_transform(df):
     text = [vocabulary[token] for token in tokenizer(_text)]
     #text = [vocabulary['<BOS>']] + text + [vocabulary['<EOS>']]
     return text
+
+data['Move_ids'] = data.apply(text_transform, axis=1)
 
 for lst in data['Move_ids']:
     if len(lst) < 2:
